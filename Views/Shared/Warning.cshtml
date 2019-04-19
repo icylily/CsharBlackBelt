@@ -1,0 +1,8 @@
+<h1 class="text-danger">@ViewBag.message</h1>
+<a href="/">Go Home</a>
+@{
+    if (ViewBag.message=="Time conflict!")
+    {
+       <a href="/Dashboard">|Dashboard</a>
+    }
+}

@@ -1,0 +1,38 @@
+@model Activity
+<div class = "row">
+    <div class = "col-md-2 text-center" ></div>
+    <div class = "col-md-8 align-text-top text-center" ><h1>Dojo Activity Center</h1></div>
+    <div class = "col-md-2 align-bottom text-center" ></div>
+</div>
+
+<div class = "row">
+    <div class = "col-md-8 text-center" ></div>
+    <div class = "col-md-2 text-center" > <a href="/Dashboard">Dashboard</a> | <a href="/logout">Log Out</a> </div>
+    <div class = "col-md-2 align-bottom text-center" ></div>
+</div>
+<hr>
+@{
+    if(ViewBag.join == "owner")
+    {
+        <p style="color:blue;">The activity is Created by yourself</p>
+    }
+    else if(ViewBag.join =="joinale")
+    {
+        <a href="/activity/join/@Model.ActivityId/@ViewBag.UserId" class="btn btn-primary btn-lg  text-right">Join</a> 
+    }
+    else if(ViewBag.join == "notjoinale")
+    {
+         <p style="color:blue;">You already joined this activity</p>
+    }
+}
+<h2>@Model.Title</h2>
+<h3> Event Coordinator: @Model.Creator.FirstName @Model.Creator.LastName</h3>
+<h3>Description:</h3>
+    <p>@Model.Description</p>
+<h3>Paticipants:</h3>
+    <div class=" text-left" style="overflow:auto; heigth:300px;">
+            @foreach(var atten in Model.Attandences)
+            {
+                <li> @atten.User.FirstName  @atten.User.LastName </li>
+            }
+    </div>
